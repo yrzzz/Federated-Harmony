@@ -1,4 +1,4 @@
-import shared_functions as sh
+import FedPCA.shared_functions as sh
 import scipy.sparse.linalg as lsa
 import scipy.linalg as la
 import scipy as sc
