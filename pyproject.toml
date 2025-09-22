@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "federated-harmony"
+version = "0.1.0"
+description = "Federated Harmony: privacy-preserving batch correction for single-cell data"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{name = "Yue Ru", email = ""}]
+license = {text = "MIT"}
+dependencies = [
+  "numpy",
+  "pandas",
+  "scipy",
+  "scikit-learn"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
