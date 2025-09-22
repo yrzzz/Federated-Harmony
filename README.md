@@ -2,7 +2,7 @@
 
 ![Figure 1 – Federated Harmony overview](docs/figures/figure1.jpeg)
 
-Federated Harmony implements privacy-preserving batch-effect correction for single-cell expression matrices. The project simulates the collaboration between multiple data-holding institutions (clients) and a coordinating center to harmonise latent representations without centralising raw data.
+Federated Harmony implements privacy-preserving batch-effect correction for single-cell expression matrices. The project simulates the collaboration between multiple data-holding institutions (clients) and a coordinating center to harmonise latent representations without centralising raw data (see *Harmony-based data integration for distributed single-cell multi-omics data*, accepted in PLOS Computational Biology).
 
 ## Key Features
 - Federated implementation of Harmony-style integration with pluggable communication rounds.
