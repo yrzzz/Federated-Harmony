@@ -8,7 +8,7 @@ Federated Harmony implements privacy-preserving batch-effect correction for sing
 - Federated implementation of Harmony-style integration with pluggable communication rounds.
 - Federated k-means utilities and PCA helpers tailored for horizontal data partitioning.
 - Reproducible PBMC tutorial notebook that demonstrates the full pipeline end-to-end.
-- Installable Python package (`federated-harmony`) with backwards-compatible shims for legacy imports.
+- Installable Python package (`federated-harmony`) with a clean, module-based layout under `src/`.
 
 ## Repository Layout
 ```
@@ -23,10 +23,12 @@ Federated-Harmony/
 │       ├── __init__.py
 │       ├── fl_harmony.py      # Center/client logic and harmonisation loop
 │       ├── fl_kmeans.py       # Federated k-means primitives and utilities
-│       └── fedpca/            # PCA helpers shared across clients and center
-├── FLharmony.py               # Compatibility shim (imports from src/)
-├── FLKmeans.py                # Compatibility shim (imports from src/)
+│       └── fedpca/
+│           ├── __init__.py
+│           ├── horizontal_pca_power_iteration.py
+│           └── shared_functions.py
 ├── pyproject.toml             # Packaging metadata for pip installation
+├── LICENSE
 └── README.md
 ```
 
@@ -43,8 +45,7 @@ If you prefer not to install the package, set `PYTHONPATH=$PWD/src` before launc
 ## Quickstart (Programmatic)
 ```python
 import pandas as pd
-from federated_harmony.fl_harmony import Client, Center, FL_harmonize
-from federated_harmony.fl_kmeans import kfed
+from federated_harmony import Client, Center, FL_harmonize, kfed
 
 # Load the PBMC toy dataset
 Z = pd.read_csv('data/PBMC_ZS.csv', index_col=0).to_numpy()
@@ -71,7 +72,7 @@ The notebook at `notebooks/FedHarmony_PBMC_Example.ipynb` reproduces the origina
 ```bash
 jupyter notebook notebooks/FedHarmony_PBMC_Example.ipynb
 ```
-The notebook now imports directly from `federated_harmony` and reads data from `../data/` relative to its location.
+The notebook now imports directly from the package root (`federated_harmony`) and reads data from `../data/` relative to its location.
 
 ## Data
 The `data/` directory contains z-scored PBMC matrices and batch annotations used by the example notebook. Replace these files with your own single-cell datasets following the same formatting to rerun the simulation with different cohorts.
@@ -79,7 +80,7 @@ The `data/` directory contains z-scored PBMC matrices and batch annotations used
 ## Development
 - Format/linters: none enforced yet; adhere to PEP 8 where practical.
 - Tests: not provided. Consider adding unit tests for client updates and convergence checks as you extend the package.
-- Legacy compatibility: top-level `FLharmony.py`, `FLKmeans.py`, and `FedPCA/` namespace re-export the reorganised package to minimise breaking changes.
+- Primary APIs are exported from `federated_harmony` to keep imports concise (e.g., `from federated_harmony import Client`).
 
 ## License
 This project is released under the MIT License (see `LICENSE`).
